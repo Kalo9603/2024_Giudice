@@ -276,7 +276,7 @@
         "kind": 6,
         "importPath": "data_collection.objects.utils.config",
         "description": "data_collection.objects.utils.config",
-        "peekOfCode": "class API:\n    KEY = \"d8190567f34dde3841dc554539fa3560\"\n    SECRET = \"2f35be9c036fbc9146cce8354c48c82d\"",
+        "peekOfCode": "class API:\n    KEY = \"\"\n    SECRET = \"\"",
         "detail": "data_collection.objects.utils.config",
         "documentation": {}
     },

@@ -28,5 +28,5 @@ class Cache:
         LASTS = f"data_collection/objects/utils/cache/lasts_{Index.PROCESSES}.csv"
 
 class API:
-    KEY = "d8190567f34dde3841dc554539fa3560"
-    SECRET = "2f35be9c036fbc9146cce8354c48c82d"
+    KEY = ""
+    SECRET = ""
