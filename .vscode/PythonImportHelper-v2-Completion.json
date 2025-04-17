@@ -1,0 +1,328 @@
+[
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "Pool",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "isExtraImport": true,
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "Manager",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "isExtraImport": true,
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "Lock",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "isExtraImport": true,
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "pylast",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pylast",
+        "description": "pylast",
+        "detail": "pylast",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Set",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "artist",
+        "importPath": "objects.artist",
+        "description": "objects.artist",
+        "isExtraImport": true,
+        "detail": "objects.artist",
+        "documentation": {}
+    },
+    {
+        "label": "artists",
+        "importPath": "objects.artist",
+        "description": "objects.artist",
+        "isExtraImport": true,
+        "detail": "objects.artist",
+        "documentation": {}
+    },
+    {
+        "label": "couple",
+        "importPath": "objects.couple",
+        "description": "objects.couple",
+        "isExtraImport": true,
+        "detail": "objects.couple",
+        "documentation": {}
+    },
+    {
+        "label": "couples",
+        "importPath": "objects.couple",
+        "description": "objects.couple",
+        "isExtraImport": true,
+        "detail": "objects.couple",
+        "documentation": {}
+    },
+    {
+        "label": "log",
+        "importPath": "objects.utils",
+        "description": "objects.utils",
+        "isExtraImport": true,
+        "detail": "objects.utils",
+        "documentation": {}
+    },
+    {
+        "label": "CSVManager",
+        "importPath": "objects.utils.utils",
+        "description": "objects.utils.utils",
+        "isExtraImport": true,
+        "detail": "objects.utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "sys,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys.",
+        "description": "sys.",
+        "detail": "sys.",
+        "documentation": {}
+    },
+    {
+        "label": "Artist",
+        "kind": 6,
+        "importPath": "data_collection.objects.artist.artist",
+        "description": "data_collection.objects.artist.artist",
+        "peekOfCode": "class Artist:\n    id = 1\n    def __init__(self, name: str, id : int = None):\n        name = name.encode('utf-8').decode('utf-8')\n        self.api = Connection().connect()\n        try:\n            self.id = Artist.setID(id)\n            self.artist = self.api.get_artist(name)\n        except:\n            l.logging.error(\"Artista \" + name + \" NON creato.\")",
+        "detail": "data_collection.objects.artist.artist",
+        "documentation": {}
+    },
+    {
+        "label": "Artists",
+        "kind": 6,
+        "importPath": "data_collection.objects.artist.artists",
+        "description": "data_collection.objects.artist.artists",
+        "peekOfCode": "class Artists:\n    def __init__(self):\n        self.api = Connection().connect()\n        self.list = {}\n        self.cache = CacheManager(ch.DB.ARTISTS, \"artists\", {\"ID\": \"SMALLINT NOT NULL\", \"Nome\": \"TEXT NOT NULL\"}, \n                                  primaryKeys=[\"ID\", \"Nome\"])\n        # Servono per i controlli e per migliorare le prestazioni\n        self.names = set()\n        self.ids = set()\n    def exists(self, name):",
+        "detail": "data_collection.objects.artist.artists",
+        "documentation": {}
+    },
+    {
+        "label": "Couple",
+        "kind": 6,
+        "importPath": "data_collection.objects.couple.couple",
+        "description": "data_collection.objects.couple.couple",
+        "peekOfCode": "class Couple:\n    similarsCache = CacheManager(ch.DB.SIMILARS, \"similars\",\n                                {\"ID\": \"SMALLINT NOT NULL\",\n                                \"Similars\": \"TEXT NOT NULL\"\n                                }, primaryKeys=[\"ID\"])\n    def __init__(self, ls: Artists, artist1: str, artist2: str, sRatio: float = None, jRatio: float = None):\n        self.api = Connection().connect()\n        self.ls = ls\n        self.ratio = {}\n        self.artists = frozenset()",
+        "detail": "data_collection.objects.couple.couple",
+        "documentation": {}
+    },
+    {
+        "label": "Couples",
+        "kind": 6,
+        "importPath": "data_collection.objects.couple.couples",
+        "description": "data_collection.objects.couple.couples",
+        "peekOfCode": "class Couples:\n    cache = CacheManager(ch.DB.COUPLES, \"couples\",\n                        {\"ID1\": \"SMALLINT NOT NULL\",\n                        \"ID2\": \"SMALLINT NOT NULL\",\n                        \"SRatio\": \"SMALLINT NOT NULL\",\n                        \"JRatio\": \"SMALLINT NOT NULL\"}, primaryKeys=[\"ID1\", \"ID2\"], indexes=[\"ID1\", \"ID2\"])\n    def __init__(self, ls: Artists):\n        self.api = Connection().connect()\n        self.ls = ls\n    @staticmethod",
+        "detail": "data_collection.objects.couple.couples",
+        "documentation": {}
+    },
+    {
+        "label": "Index",
+        "kind": 6,
+        "importPath": "data_collection.objects.utils.config",
+        "description": "data_collection.objects.utils.config",
+        "peekOfCode": "class Index:\n    class Threshold:\n        SAMPLE = 50.0\n        JACCARD = 50.0\n    PROCESSES = 12\nclass Cache:\n    class DB:\n        ARTISTS = \"data_collection/objects/utils/cache/artists.db\"\n        SIMILARS = \"data_collection/objects/utils/cache/similars.db\"\n        COUPLES = \"data_collection/objects/utils/cache/couples.db\"",
+        "detail": "data_collection.objects.utils.config",
+        "documentation": {}
+    },
+    {
+        "label": "Cache",
+        "kind": 6,
+        "importPath": "data_collection.objects.utils.config",
+        "description": "data_collection.objects.utils.config",
+        "peekOfCode": "class Cache:\n    class DB:\n        ARTISTS = \"data_collection/objects/utils/cache/artists.db\"\n        SIMILARS = \"data_collection/objects/utils/cache/similars.db\"\n        COUPLES = \"data_collection/objects/utils/cache/couples.db\"\n    class CSV:\n        IMPORT = \"data_collection/data/links.csv\"\n        EXPORT = \"data_collection/data/links.csv\"\n        POPULARITY = \"data_collection/data/popularity.csv\"\n        POP_ZINDEX = \"data_collection/data/popularity_z.csv\"",
+        "detail": "data_collection.objects.utils.config",
+        "documentation": {}
+    },
+    {
+        "label": "API",
+        "kind": 6,
+        "importPath": "data_collection.objects.utils.config",
+        "description": "data_collection.objects.utils.config",
+        "peekOfCode": "class API:\n    KEY = \"d8190567f34dde3841dc554539fa3560\"\n    SECRET = \"2f35be9c036fbc9146cce8354c48c82d\"",
+        "detail": "data_collection.objects.utils.config",
+        "documentation": {}
+    },
+    {
+        "label": "Connection",
+        "kind": 6,
+        "importPath": "data_collection.objects.utils.connection",
+        "description": "data_collection.objects.utils.connection",
+        "peekOfCode": "class Connection:\n    def __init__(self):\n        self.key = API.KEY\n        self.secret = API.SECRET\n    def getKey(self):\n        return self.key\n    def getSecret(self):\n        return self.secret\n    def connect(self):\n        try:",
+        "detail": "data_collection.objects.utils.connection",
+        "documentation": {}
+    },
+    {
+        "label": "run",
+        "kind": 2,
+        "importPath": "data_collection.objects.utils.log",
+        "description": "data_collection.objects.utils.log",
+        "peekOfCode": "def run():\n    logging.getLogger(\"httpx\").setLevel(logging.CRITICAL)\n    logging.getLogger(\"pylast\").setLevel(logging.CRITICAL)\n    logging.basicConfig(\n        level=logging.INFO,\n        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',\n        handlers=[\n            logging.FileHandler('log.log', encoding='utf-8'),\n            logging.StreamHandler() \n        ]",
+        "detail": "data_collection.objects.utils.log",
+        "documentation": {}
+    },
+    {
+        "label": "CSVManager",
+        "kind": 6,
+        "importPath": "data_collection.objects.utils.utils",
+        "description": "data_collection.objects.utils.utils",
+        "peekOfCode": "class CSVManager:\n    @staticmethod\n    def getHeader(filename):\n        if filename == ch.CSV.EXPORT:\n            return [\"IDArtista1\", \"Artista1\", \"IDArtista2\", \"Artista2\", \"SampleRatio\", \"JaccardRatio\"]\n        elif filename == ch.CSV.LASTS:\n            return [\"PrID\", \"LastAr\", \"Analyzed\"]\n        elif filename == ch.CSV.POPULARITY:\n            return [\"ID\", \"Nome\", \"Ascoltatori\", \"Ascolti\", \"Popolarità\", \"PopolaritàLog\"]\n        elif filename == ch.CSV.POP_ZINDEX:",
+        "detail": "data_collection.objects.utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "CacheManager",
+        "kind": 6,
+        "importPath": "data_collection.objects.utils.utils",
+        "description": "data_collection.objects.utils.utils",
+        "peekOfCode": "class CacheManager:\n    def __init__(self, path: str, name: str, fields: Dict[str, str], primaryKeys: List[str], indexes: Optional[List[str]] = None):\n            self.path = path\n            self.name = name\n            self.fields = fields\n            self.primaryKeys = primaryKeys\n            self.indexes = indexes\n            self.buffer = [] \n            self.batchSize = 1000\n            for key in primaryKeys:",
+        "detail": "data_collection.objects.utils.utils",
+        "documentation": {}
+    },
+    {
+        "label": "sys.stdout",
+        "kind": 5,
+        "importPath": "data_collection.generate",
+        "description": "data_collection.generate",
+        "peekOfCode": "sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')\nl.run()\nif __name__ == '__main__':\n    ls = ars.Artists()\n    \"\"\"\n    # STEP 1\n    # Creazione degli artisti ed esportazione in CSV\n    ls.addArtist(\"Annalisa\")\n    ls.addArtist(\"Giorgio Vanni\")\n    ls.addArtist(\"Katy Perry\")",
+        "detail": "data_collection.generate",
+        "documentation": {}
+    }
+]

@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Custom files
+data_collection/objects/utils/cache/artists.db
+data_collection/objects/utils/cache/artists.db-shm
+data_collection/objects/utils/cache/artists.db-wal
+data_collection/objects/utils/cache/couples.db
+data_collection/objects/utils/cache/similars.db
+data_collection/objects/utils/cache/couples.db-shm
+data_collection/objects/utils/cache/couples.db-wal

@@ -1,0 +1,193 @@
+[
+    {
+        "label": "pylast",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pylast",
+        "description": "pylast",
+        "detail": "pylast",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "shelve",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shelve",
+        "description": "shelve",
+        "detail": "shelve",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "Pool",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "isExtraImport": true,
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "Manager",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "isExtraImport": true,
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "combinations",
+        "importPath": "itertools",
+        "description": "itertools",
+        "isExtraImport": true,
+        "detail": "itertools",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "artist",
+        "importPath": "objects.artist",
+        "description": "objects.artist",
+        "isExtraImport": true,
+        "detail": "objects.artist",
+        "documentation": {}
+    },
+    {
+        "label": "artists",
+        "importPath": "objects.artist",
+        "description": "objects.artist",
+        "isExtraImport": true,
+        "detail": "objects.artist",
+        "documentation": {}
+    },
+    {
+        "label": "couple",
+        "importPath": "objects.couple",
+        "description": "objects.couple",
+        "isExtraImport": true,
+        "detail": "objects.couple",
+        "documentation": {}
+    },
+    {
+        "label": "couples",
+        "importPath": "objects.couple",
+        "description": "objects.couple",
+        "isExtraImport": true,
+        "detail": "objects.couple",
+        "documentation": {}
+    },
+    {
+        "label": "sys,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys.",
+        "description": "sys.",
+        "detail": "sys.",
+        "documentation": {}
+    },
+    {
+        "label": "Artist",
+        "kind": 6,
+        "importPath": "objects.artist.artist",
+        "description": "objects.artist.artist",
+        "peekOfCode": "class Artist:\n    id = 1\n    def __init__(self, name: str, id : int = None):\n        name = name.encode('utf-8').decode('utf-8')\n        self.api = Connection().connect()\n        try:\n            self.id = Artist.setID(id)\n            self.artist = self.api.get_artist(name)\n        except:\n            l.logging.error(\"Artista \" + name + \" NON creato.\")",
+        "detail": "objects.artist.artist",
+        "documentation": {}
+    },
+    {
+        "label": "Artists",
+        "kind": 6,
+        "importPath": "objects.artist.artists",
+        "description": "objects.artist.artists",
+        "peekOfCode": "class Artists:\n    def __init__(self):\n        self.api = Connection().connect()\n        self.list = {}\n    def exists(self, name):\n        return name in self.list\n    def addArtist(self, name: str, id: int = None):\n        try:\n            if id is None:\n                id = Artist.id",
+        "detail": "objects.artist.artists",
+        "documentation": {}
+    },
+    {
+        "label": "Couple",
+        "kind": 6,
+        "importPath": "objects.couple.couple",
+        "description": "objects.couple.couple",
+        "peekOfCode": "class Couple:\n    def __init__(self, ls: Artists, artist1: str, artist2: str, sRatio: float = None, jRatio: float = None):\n        self.api = Connection().connect()\n        self.ls = ls\n        self.ratio = {}\n        self.artists = frozenset()\n        try:\n            ar1 = self.ls.getIDByArtistName(artist1)\n            ar2 = self.ls.getIDByArtistName(artist2)\n            if ar1 is None or ar2 is None:",
+        "detail": "objects.couple.couple",
+        "documentation": {}
+    },
+    {
+        "label": "Couples",
+        "kind": 6,
+        "importPath": "objects.couple.couples",
+        "description": "objects.couple.couples",
+        "peekOfCode": "class Couples:\n    SAMPLE_THRESHOLD = 50.0\n    JACCARD_THRESHOLD = 50.0\n    def __init__(self, ls: Artists):\n        self.api = Connection().connect()\n        self.ls = ls\n        self.couples = {}\n    @staticmethod\n    def addCouple(couples, ls, cache, ar1: str, ar2: str, prID, sRatio=True, jRatio=True):\n        try:",
+        "detail": "objects.couple.couples",
+        "documentation": {}
+    },
+    {
+        "label": "Connection",
+        "kind": 6,
+        "importPath": "objects.connection",
+        "description": "objects.connection",
+        "peekOfCode": "class Connection:\n    def __init__(self):\n        self.key = KEY\n        self.secret = SECRET\n    def getKey(self):\n        return KEY\n    def getSecret(self):\n        return SECRET\n    def connect(self):\n        try:",
+        "detail": "objects.connection",
+        "documentation": {}
+    },
+    {
+        "label": "KEY",
+        "kind": 5,
+        "importPath": "objects.connection",
+        "description": "objects.connection",
+        "peekOfCode": "KEY = 'd8190567f34dde3841dc554539fa3560'\nSECRET = '2f35be9c036fbc9146cce8354c48c82d'\nl.run()\nclass Connection:\n    def __init__(self):\n        self.key = KEY\n        self.secret = SECRET\n    def getKey(self):\n        return KEY\n    def getSecret(self):",
+        "detail": "objects.connection",
+        "documentation": {}
+    },
+    {
+        "label": "SECRET",
+        "kind": 5,
+        "importPath": "objects.connection",
+        "description": "objects.connection",
+        "peekOfCode": "SECRET = '2f35be9c036fbc9146cce8354c48c82d'\nl.run()\nclass Connection:\n    def __init__(self):\n        self.key = KEY\n        self.secret = SECRET\n    def getKey(self):\n        return KEY\n    def getSecret(self):\n        return SECRET",
+        "detail": "objects.connection",
+        "documentation": {}
+    },
+    {
+        "label": "run",
+        "kind": 2,
+        "importPath": "objects.log",
+        "description": "objects.log",
+        "peekOfCode": "def run():\n    logging.getLogger(\"httpx\").setLevel(logging.CRITICAL)\n    logging.getLogger(\"pylast\").setLevel(logging.CRITICAL)\n    logging.basicConfig(\n        level=logging.INFO,\n        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',\n        handlers=[\n            logging.FileHandler('log.log', encoding='utf-8'),\n            logging.StreamHandler() \n        ]",
+        "detail": "objects.log",
+        "documentation": {}
+    },
+    {
+        "label": "sys.stdout",
+        "kind": 5,
+        "importPath": "generate",
+        "description": "generate",
+        "peekOfCode": "sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')\nif __name__ == '__main__':\n    ls = ars.Artists()\n    # STEP 1\n    # Creazione degli artisti ed esportazione in CSV\n    \"\"\"\n    ls.addArtist(\"Annalisa\")\n    ls.addArtist(\"Giorgio Vanni\")\n    ls.addArtist(\"Katy Perry\")\n    ls.addArtist(\"Ado\")",
+        "detail": "generate",
+        "documentation": {}
+    }
+]
