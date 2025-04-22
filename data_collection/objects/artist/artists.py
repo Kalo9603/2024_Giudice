@@ -12,7 +12,7 @@ from ..utils.config import Cache as ch
 
 l.run()
 
-""" Classe che rappresenta una lista di artisti musicali. """
+
 class Artists:
 
     def __init__(self):
@@ -85,22 +85,6 @@ class Artists:
         except Exception as e:
             l.logging.error("Errore durante la popolazione: " + str(e))
 
-    def removeArtist(self, name: str):
-        try:
-            if self.exists(name):
-                del self.list[name]
-        except ValueError as e:
-            l.logging.error("Nome artista non valido: " + str(e))
-
-    def find(self, id = 0, name = ""):
-        if(id in range(0, Artist.id) or name != ""):
-            for artist in self.list:
-                if artist.getID() == id:
-                    return artist.getArtistName()
-                if artist.getArtistName() == name:
-                    return artist.getID()
-        l.logging.error("ID, Nome artista non valido o valore di input non valido")
-
     def exportData(self, filename):
         with open(filename, mode='w', newline='', encoding='utf-8') as f:
             writer = csv.DictWriter(f, fieldnames=["ID", "Artista"])
@@ -163,69 +147,6 @@ class Artists:
         except:
             return 0
         
-    def getArtistsStats(self, type="all"):
-        
-        lFile = ch.TXT.L_TEMP
-        pcFile = ch.TXT.PC_TEMP
-
-        artists = list(self.list.values())
-
-        def _resume(path):
-            return sum(1 for _ in open(path)) if os.path.exists(path) else 0
-
-        def _append(path, value):
-            with open(path, "a") as f:
-                f.write(f"{value}\n")
-
-        def _load(path):
-            if not os.path.exists(path):
-                return []
-            with open(path, "r") as f:
-                return [int(line.strip()) for line in f if line.strip().isdigit()]
-
-        def _process(attr, path, method):
-            
-            begin = _resume(path)
-
-            for i, artist in enumerate(artists[begin:], start=begin):
-                while True:
-                    try:
-                        value = getattr(artist, method)()
-                        _append(path, value)
-                        l.logging.info(f"{artist.getID()}. {artist.getArtistName()} - {value}")
-                        break
-                    except Exception as e:
-                        l.logging.warning(f"Errore nel recupero di {attr} per {artist.getArtistName()}: {e}. Riprovo...")
-                        time.sleep(1)
-
-            return _load(path)
-
-        results = {}
-
-        if type in ["listeners", "all"]:
-            listeners = _process("ascoltatori", lFile, "getListeners")
-            results["Ascoltatori"] = {
-                "Media": float(np.mean(listeners)),
-                "DStandard": float(np.std(listeners))
-            }
-
-        if type in ["playcount", "all"]:
-            playcounts = _process("ascolti", pcFile, "getPlayCount")
-            results["Ascolti"] = {
-                "Media": float(np.mean(playcounts)),
-                "DStandard": float(np.std(playcounts))
-            }
-
-        if type == "listeners":
-            return results["Ascoltatori"]
-        elif type == "playcount":
-            return results["Ascolti"]
-        elif type == "all":
-            return results
-
-        return None
-
-
     def updatePopularity(self):
 
         def _truncate(value, decimals=5):
