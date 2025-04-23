@@ -3,6 +3,7 @@
 \documentclass[sigchi]{acmart}
 \usepackage{array}
 \usepackage{graphicx}
+\usepackage{multirow}
 
 %
 % defining the \BibTeX command - from Oren Patashnik's original BibTeX documentation.
@@ -98,7 +99,7 @@ In particolare, i coefficienti di correlazione citati sono calcolati come segue.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|c|>{\raggedright\arraybackslash}p{4cm}|}
+\begin{tabular}{|c|>{\centering\arraybackslash}p{4cm}|}
 \hline
 \textbf{Indice} & \textbf{Formula} \\
 \hline
@@ -173,17 +174,17 @@ Il grado medio del grafo è di $ 8.42 $. \\ Per calcolarlo sono stati utilizzati
 \item Dividendo il numero di righe del dataset per il numero di artisti connessi;
 \item Dividendo la somma dei gradi dei singoli artisti per il numero degli stessi.
 \end{itemize}
-Nota che l'errore tra i due metodi è dell'ordine di $ 10^{-4} $. \\ Dal grafico si evince la forte asimmetria del grado medio degli artisti: ve ne sono molti con grado basso e meno con grado più alto.
+Nota che l'errore tra i due metodi è dell'ordine di $ 10^{-4} $. Dal grafico si evince la forte asimmetria del grado medio degli artisti: ve ne sono molti con grado basso e meno con grado più alto.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.45
 \textwidth]{../network_analysis/plots/2_2/grDist.png}
 \caption{Distribuzione del grado degli artisti}
-\label{fig:plotDist}
+\label{fig:grDist}
 \end{figure}
 
-Questa asimmetria dei gradi del grafo si mostra maggiormente dalle distribuzioni CDF e CCDF: la probabilità di trovare un artista con grado elevato decresce.
+\noindent Questa asimmetria dei gradi del grafo si mostra maggiormente dalle distribuzioni CDF e CCDF: la probabilità di trovare un artista con grado elevato decresce.
 
 \begin{figure}[H]
 \centering
@@ -193,47 +194,151 @@ Questa asimmetria dei gradi del grafo si mostra maggiormente dalle distribuzioni
 \label{fig:plotDist}
 \end{figure}
 
-Dato che si tratta di un grafo pesato su due livelli, è interessante mostrare come si comportano i rispettivi pesi con i medesimi grafici. Per cui si illustrano i medesimi grafici ma pesati: qui è evidente come lo Jaccard Ratio risulta più traslato indietro rispetto al Sample corrispondente:
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.45
-\textwidth]{../network_analysis/plots/2_2/wGhGrDist.png}
-\caption{Distribuzione del grado pesato degli artisti}
-\label{fig:plotDist}
-\end{figure}
-
-Invece dal grafico corrispondente CDF e CCDF si nota come il range dei gradi pesati Jaccard sia molto più variabile rispetto al Sample. Risulta altresì interessante la continua sovrapposizione di entrambi i gradi nel modello CCDF:
+\noindent Dato che si tratta di un grafo pesato su due livelli, è interessante mostrare come si comportano i rispettivi pesi con i medesimi grafici. Per cui si illustrano i medesimi grafici ma pesati: qui è evidente come lo Jaccard Ratio risulta più traslato indietro rispetto al Sample corrispondente. dal grafico corrispondente CDF e CCDF si nota come il range dei gradi pesati Jaccard sia molto più variabile rispetto al Sample. Risulta altresì interessante la continua sovrapposizione di entrambi i gradi nel modello CCDF:
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.45
 \textwidth]{../network_analysis/plots/2_2/wPlotDist.png}
 \caption{Distribuzione del grado pesato degli artisti - CDF e CCDF}
-\label{fig:plotDist}
+\label{fig:wPlotDist}
 \end{figure}
 
-
 \subsection{Confronto con il grafo ER}
+
+Il grafo è stato confrontato con un corrispettivo Erdős-Rényi (ER) con lo stesso numero di archi e la stessa densità. Come da definizione, la distribuzione è simil-parabolica e i valori, data la densità relativamente bassa, poco appaiati.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_2/ERGrDist.png}
+\caption{Grafo ER corrispondente}
+\label{fig:ERGrDist}
+\end{figure}
 
 
 \subsection{Confronto con il grafo BA}
 
+In maniera speculare è stato creato anche un corrispettivo Barabási-Albert (BA), formato da un unico componente, con lo stesso numero di archi e come parametro $m$, si è scelto il valore di default ($m=3$); la sua densità è minore del grafo principale e ha più di un terzo degli archi. Il regime è {\itshape Supercritical}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_2/BAGrDist.png}
+\caption{Grafo BA corrispondente}
+\label{fig:BAGrDist}
+\end{figure}
+
+\noindent Dunque sono state messe a confronto le tre distribuzioni: per grado $n\approx10$ tutti e tre tendono a coincidere. Le generalità dei tre grafi sono le seguenti:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\resizebox{0.45\textwidth}{!}{
+\begin{tabular}{|l|c|c|c|}
+\hline
+& \textbf{Originale} & \textbf{ER} & \textbf{BA} \\
+\hline
+Nodi & \multicolumn{3}{|c|}{11\,745}  \\
+\hline
+Archi & 98\,890 & 98\,479 & 35\,226 \\
+\hline
+Densità & $1.433 \times 10^{-3}$ & $1.427 \times 10^{-3}$ & $5.107 \times 10^{-4}$ \\
+\hline
+Clustering medio & 0.516 & $1.46 \times 10^{-3}$ & $5.163 \times 10^{-3}$ \\
+\hline
+Grado medio & 8.42 & 16.77 & 6 \\
+\hline
+Regime & \multicolumn{2}{|c|}{{\itshape Connected}} & {\itshape Supercritical} \\
+\hline
+\end{tabular}
+}
+\caption{Confronto tra le metriche del grafo e dei modelli ER e BA}
+\label{tab:comparison}
+\end{table}
+
+\noindent La tabella sopra è accompagnata dal grafico sovrapposto seguente che mostra come la distribuzione del grafo si avvicini a quello BA:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_2/grComparison.png}
+\caption{Confronto tra le tre distribuzioni}
+\label{fig:grComparison}
+\end{figure}
+
+\noindent Si può constatare che il grafo, per quanto possa somigliare a un grafo BA, non si può prendere perfettamente a modello, complici il numero di archi e la densità nettamente minori del BA rispetto all'originale. Invece a occhio, se si sovrapponesse la medesima distribuzione pesata, si può notare che essa risulti molto più simile al BA rispetto al corrispettivo {\itshape inweighted}. Invece l'ER, sebbene alcuni valori di riferimento sono abbastanza vicini, non si avvicina minimamente alla distribuzione in analisi.
 
 \subsection{Distribuzione dei Ratio}
 
+Stabilito il criterio per la creazione degli archi si è pensato di svolgere una breve analisi anche sulla distribuzione normale dei ratio del dataset. Mettendo in relazione il ratio con la rispettiva frequenza, si possono mettere a confronto le gaussiane. Tenendo conto che si sta visualizzando nell'intervallo $[50,100]$, la curva del Sample Ratio si mostra più "alta" e più "centrata", mentre quella dello Jaccard più bassa, omogenea, ma più dislocata a sinistra. Questo anche perché, appunto, lo Jaccard medio ($57.39\%$) risulta nettamente inferiore del corrispettivo Sample medio ($72.69\%$).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_3/rtDist.png}
+\caption{Distribuzione dei Sample e Jaccard Ratio}
+\label{fig:rtDist}
+\end{figure}
 
 \subsection{Componenti connesse}
 
+A causa delle soglie stabilite è stato previsto che il grafo in analisi sia molto frammentato: con l'analisi svolta sono state individuate $800$ componenti connesse. Il componente maggiormente connesso è formato da ben $920$ nodi: esso è formato da musicisti britannici o, più in generale, di molti artisti degli anni Settanta e Ottanta. Il sottografo menzionato, sia con gli archi Sample Ratio che con quelli Jaccard Ratio, è il seguente:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_4/lrgstCmpnt.png}
+\caption{Sottocomponente maggiore}
+\label{fig:lrgstCmpnt}
+\end{figure}
 
 \subsection{Path Analysis}
 
+Il numero dei sottografi è molto alto, per cui si è pensato di studiare come ne sono distribuiti i diametri. Dalla figura sotto si evince che più della metà dei sottografi sono formati da al più due nodi connessi da un singolo arco e, di conseguenza, ci sono pochi, pochissimi sottografi di diametro elevato. Il diametro medio è poco più che $2$: quindi, in media, i sottografi sono formati maggiormente da $3$-$4$ nodi:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_5/dmtDist.png}
+\caption{Distribuzione dei diametri dei subgraphs}
+\label{fig:dmtDist}
+\end{figure}
 
 \subsection{Clustering e Densità}
+
+Il clustering medio è di $0.51646$. In media, quindi, più vi sono poco più della metà di vicini collegati tra di loro, per ciascun nodo. Questo valore suggerisce che nella rete ci sono tante triadi o, comunque, gruppi piccoli di artisti; per cui gli artisti simili tendono a connettersi tra di loro in maniera abbastanza moderata. \\ \\ Parallelamente a ciò, come è stato specificato in tabella, si è esaminato come sono distribuite le densità dei sottografi. In maniera speculare al grafico precedente, tutti i sottografi con diametro $1$ hanno densità massima. Al contrario, maggiore è il diametro del sottografo, minore è la probabilità di avere una densità alta: per questi motivi la densità media per sottografo è decisamente più alta rispetto a quella globale ($0.7713$ per sottografi, $1.433 \times 10^{-3}$ globale)
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_6/densDist.png}
+\caption{Distribuzione delle densità dei subgraphs}
+\label{fig:densDist}
+\end{figure}
 
 
 \subsection{Centralities}
 
+Sono state esaminate sia la {\itshape Closeness} che la {\itshape Betweenness} Centrality. Su questi parametri salta nell'occhio che i valori massimi sono entrambi molto bassi, il che suggerisce una certa lontananza (in termini di Closeness) o di dominanza (per la Betweenness). Queste sono conseguenze nell'aver stabilito una soglia minima di Ratio relativamente centrale: infatti, la probabilità che due artisti siano legati da un ratio basso è ben maggiore. \\ \\ I valori massimi di {\bfseries Closeness} Centrality oscillano tra $1.347 \times 10^-2$ e $1.429 \times 10^-2$: ciò suggerisce che, sebbene la soglia è relativamente bassa risulta coerente in quanto la rete è poco densa. La top $20$ degli artisti per Closeness è dominata da artisti provenienti dal mondo country e country pop; inoltre può anche suggerire che all'interno del dataset gli artisti country sono collegati in maniera migliore rispetto agli altri generi musicali. Si mostra un grafico che mostra i $20$ artisti con maggiore Closeness:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_7/top20Clness.png}
+\caption{I primi 20 artisti per Closeness Centrality}
+\label{fig:top20Clness}
+\end{figure}
+
+\noindent I primi $20$ valori di {\bfseries Betweenness}, invece, si trovano in un range tra $8.6 \times 10^-4$ e $2.95 \times 10^-3$: valori così bassi implicano una non dipendenza di artisti per mantenere la rete connessa, sia perché è formata da molte componenti connesse, sia perché il numero di archi è esiguo. Può anche suggerire una struttura abbastanza distribuita e quindi vi sono molti percorsi alternativi. Si nota che gli artisti con maggiore Betweenneess sono meno mainstream e più eterogenei. Vi sono, infatti, artisti rock degli anni Ottanta, Classic Rock e artisti giapponesi, tra i quali di Alternative Rock/Metal; essi non sono al centro del grafo, ma fungono da ponti tra comunità diverse.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../network_analysis/plots/2_7/top20Btwnss.png}
+\caption{I primi 20 artisti per Betweenness Centrality}
+\label{fig:top20Btwnss}
+\end{figure}
 
 \section{Task: Open Question}
 
