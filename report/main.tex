@@ -110,7 +110,7 @@ Jaccard Ratio &
 $JR(a, b) = \frac{|S_a \cap S_b|}{|S_a \cup S_b|}$ \\
 \hline
 Popolarità &
-$pop_i = \frac{ascolti_i}{ascoltatori_i}$ \\
+$pop_i = \frac{ascolti_i}{ascoltatori_i + 1}$ \\
 \hline
 Popolarità logaritmica &
 $pop_{\log,i} = \log(pop_i + 1)$ \\
@@ -320,7 +320,7 @@ Il clustering medio è di $0.51646$. In media, quindi, più vi sono poco più de
 
 \subsection{Centralities}
 
-Sono state esaminate sia la {\itshape Closeness} che la {\itshape Betweenness} Centrality. Su questi parametri salta nell'occhio che i valori massimi sono entrambi molto bassi, il che suggerisce una certa lontananza (in termini di Closeness) o di dominanza (per la Betweenness). Queste sono conseguenze nell'aver stabilito una soglia minima di Ratio relativamente centrale: infatti, la probabilità che due artisti siano legati da un ratio basso è ben maggiore. \\ \\ I valori massimi di {\bfseries Closeness} Centrality oscillano tra $1.347 \times 10^-2$ e $1.429 \times 10^-2$: ciò suggerisce che, sebbene la soglia è relativamente bassa risulta coerente in quanto la rete è poco densa. La top $20$ degli artisti per Closeness è dominata da artisti provenienti dal mondo country e country pop; inoltre può anche suggerire che all'interno del dataset gli artisti country sono collegati in maniera migliore rispetto agli altri generi musicali. Si mostra un grafico che mostra i $20$ artisti con maggiore Closeness:
+Sono state esaminate sia la {\itshape Closeness} che la {\itshape Betweenness} Centrality. Su questi parametri salta nell'occhio che i valori massimi sono entrambi molto bassi, il che suggerisce una certa lontananza (in termini di Closeness) o di dominanza (per la Betweenness). Queste sono conseguenze nell'aver stabilito una soglia minima di Ratio relativamente centrale: infatti, la probabilità che due artisti siano legati da un ratio basso è ben maggiore. \\ \\ I valori massimi di {\bfseries Closeness} Centrality oscillano tra $1.347 \times 10^{-2}$ e $1.429 \times 10^{-2}$: ciò suggerisce che, sebbene la soglia è relativamente bassa risulta coerente in quanto la rete è poco densa. La top $20$ degli artisti per Closeness è dominata da artisti provenienti dal mondo country e country pop; inoltre può anche suggerire che all'interno del dataset gli artisti country sono collegati in maniera migliore rispetto agli altri generi musicali. Si mostra un grafico che mostra i $20$ artisti con maggiore Closeness:
 
 \begin{figure}[H]
 \centering
@@ -330,7 +330,7 @@ Sono state esaminate sia la {\itshape Closeness} che la {\itshape Betweenness} C
 \label{fig:top20Clness}
 \end{figure}
 
-\noindent I primi $20$ valori di {\bfseries Betweenness}, invece, si trovano in un range tra $8.6 \times 10^-4$ e $2.95 \times 10^-3$: valori così bassi implicano una non dipendenza di artisti per mantenere la rete connessa, sia perché è formata da molte componenti connesse, sia perché il numero di archi è esiguo. Può anche suggerire una struttura abbastanza distribuita e quindi vi sono molti percorsi alternativi. Si nota che gli artisti con maggiore Betweenneess sono meno mainstream e più eterogenei. Vi sono, infatti, artisti rock degli anni Ottanta, Classic Rock e artisti giapponesi, tra i quali di Alternative Rock/Metal; essi non sono al centro del grafo, ma fungono da ponti tra comunità diverse.
+\noindent I primi $20$ valori di {\bfseries Betweenness}, invece, si trovano in un range tra $8.6 \times 10^{-4}$ e $2.95 \times 10^{-3}$: valori così bassi implicano una non dipendenza di artisti per mantenere la rete connessa, sia perché è formata da molte componenti connesse, sia perché il numero di archi è esiguo. \\ \\ Può anche suggerire una struttura abbastanza distribuita e quindi vi sono molti percorsi alternativi. Si nota che gli artisti con maggiore Betweenneess sono meno mainstream e più eterogenei. Vi sono, infatti, artisti rock degli anni Ottanta, Classic Rock e artisti giapponesi, tra i quali di Alternative Rock/Metal; essi non sono al centro del grafo, ma fungono da ponti tra comunità diverse.
 
 \begin{figure}[H]
 \centering
@@ -342,12 +342,90 @@ Sono state esaminate sia la {\itshape Closeness} che la {\itshape Betweenness} C
 
 \section{Task: Open Question}
 
+Come {\itshape Open Question} si è pensato di indagare su come è possibile distinguere gli artisti mainstream da quelli emergenti, in termini di centralità, densità e distribuzione delle connessioni. Inoltre si prova a prevedere se, in base ai Ratio e alla popolarità, un artista può avere la possibilità di diventare più conosciuto o, se le condizioni sono sfavorevoli, tornare poco conosciuto.
 
 \subsection{Generalità e definizione dei parametri}
 
+L'indagine comincia con il calcolo della {\itshape popolarità} di un artista. Come già specificato nella Table 1, la popolarità è stata calcolata come il rapporto tra il numero di ascolti e il numero di ascoltatori aumentato di $1$ (in modo da non avere problemi di calcolo). \\ \\ Per uniformare i {\itshape gap}, cioè per non avere popolarità troppo distanti l'una dall'altra e quindi per non agevolare molto gli artisti con pochi ascoltatori e molti ascolti, si è optato di utilizzare il suo logaritmo e, al fine di un riferimento con la media $\mu$ e la deviazione standard $\sigma$ della popolarità, è stato calcolato lo Z-Index. Il valore è direttamente proporzionale alla distanza dalla media; il segno, invece, indica se l'artista si trova sopra/sotto la media stessa. Dalla Table 1 si riprendono le formule relative alla popolarità:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|>{\centering\arraybackslash}p{4cm}|}
+\hline
+\textbf{Indice} & \textbf{Formula} \\
+\hline
+Popolarità &
+$pop_i = \frac{ascolti_i}{ascoltatori_i + 1}$ \\
+\hline
+Popolarità logaritmica &
+$pop_{\log,i} = \log(pop_i + 1)$ \\
+\hline
+Media &
+$\mu = \frac{1}{N} \sum_{i=1}^{N} pop_{\log,i}$ \\
+\hline
+Deviazione standard &
+$\sigma = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (pop_{\log,i} - \mu)^2}$ \\
+\hline
+Z-Index &
+$Z_i = \frac{pop_{\log,i} - \mu}{\sigma}$ \\
+\hline
+\end{tabular}\\[15pt]
+\caption{Formule utilizzate per la classificazione}
+\end{table}
+
+\noindent Dai calcoli si evince che la popolarità logaritmica media, cioè il valore in cui lo Z-Index è nullo, è uguale a $2.768$. I valori uscillano da $0$ (quattro coppie di artisti senza ascolti, né ascoltatori) a $6.62$ (Lyodra); questo vuol dire che la scala è abbastanza omogenea.
 
 \subsection{Definizione delle classi}
 
+Per poter definire se un artista è emergente, mainstream o nella via di mezzo, sono stati adottati i quantili. Se un artista ha uno Z-Index:
+
+\begin{itemize}
+\item minore o uguale al $15^\circ$ percentile, allora è considerato {\itshape emergente};
+\item maggiore o uguale all\textquotesingle$85^\circ$ percentile, allora è considerato {\itshape mainstream};
+\item in tutti gli altri casi è {\itshape medio}.
+\end{itemize}
+
+Il seguente grafico mostra la dsitribuzione dello Z-Index con evidenziati i quantili di riferimento:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../open_problem/plots/3_2/popDistPc.png}
+\caption{Distribuzione dello Z-Index con quantili}
+\label{fig:popDistPc}
+\end{figure}
+
+\noindent Gli artisti considerati emergenti si trovano al più {\itshape a sinistra} della retta in rosso, i mainstream al più {\itshape a destra} della retta in verde, infine i medi in mezzo le due rette citate. \\ \\ Considerati questi parametri si è provato ad accostare tali classi agli archi del grafo: in questo modo si otterranno delle coppie del tipo {\itshape mainstream}-{\itshape mainstream}, {\itshape mainstream}-{\itshape medio}, ecc. Da ciò è stata creata una {\itshape heat map} che mostra come sono accoppiate le classi di artisti tra di loro:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../open_problem/plots/3_2/clConnection.png}
+\caption{Connessioni tra le classi}
+\label{fig:clConnection}
+\end{figure}
+
+\noindent Un dato interessante che salta all'occhio è che gli archi tra artisti mainstream ed emergenti è decisamente più basso tra gli altri ($330+81=411$ su 98\,890, solo lo $0.41\%$ del totale). Per cui è molto meno probabile che un emergente possa saltare direttamente al mainstream; dunque l'artista in questione dovrà necessariamente passare dalla classe intermedia. \\ \\ Andando più nel dettaglio si è creato un {\itshape box plot} che mostra come sono distribuiti i Ratio in base alle classi sopra:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../open_problem/plots/3_2/clDist.png}
+\caption{Distribuzione degli archi per Ratio e classe}
+\label{fig:clDist}
+\end{figure}
+
+\noindent Sul {\itshape Sample} Ratio, il numero di artisti simili condivisi (in proporzione) è relativamente omogeneo tra le classi. Tuttavia, potrebbero esserci più outlier o interazioni più diverse quando sono coinvolti artisti emergenti. Invece, lo {\itshape Jaccard} Ratio, penalizza le coppie con ampio numero di artisti simili non condivisi. Gli artisti medi condividono una frazione maggiore del loro universo simile, mentre i mainstream hanno insiemi più grandi e meno sovrapposti. \\ \\ In seguito si è preso in considerazione un subgraph del grafo (si considera il primo) e si rappresentano le classi di riferimento.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../open_problem/plots/3_2/clSubgraph_1.png}
+\caption{Subgraph 1 con classificazione}
+\label{fig:clSubgraph_1}
+\end{figure}
+
+\noindent Di questo sottografo è interessante notare che esiste una community composta quasi totalmente da artisti mainstream; in più ne esiste un'altra formata per la maggiore da artisti medi. Infine, gli emergenti corrispondono a una piccola parte del {\itshape subgraph}.
 
 \subsection{Calcolo delle classi intermedie}
 
