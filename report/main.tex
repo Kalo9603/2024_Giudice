@@ -429,6 +429,24 @@ Il seguente grafico mostra la dsitribuzione dello Z-Index con evidenziati i quan
 
 \subsection{Calcolo delle classi intermedie}
 
+Stabilite le classi degli artisti, è utile in questa fase individuare quali sono gli artisti che possono tendere a un aumento o a un calo di popolarità. Per far ciò sono state analizzate le community, ricercate attraverso l'algoritmo di Louvain, in cui è presente ciascun artista. In primo luogo per ciascuna community sono stati calcolati lo Z-Index, il Sample e lo Jaccard medi. Lo studio delle community è utile per identificare il contesto e trovare cluster potenzialmente interessanti e non per cambiare direttamente la classe di un artista; la community da sola non è una buona predittrice della struttura interna o della popolarità..
+ \\ \\ Quindi si definiscono altre tre classi per identificare i nodi che possono tendere ad un cambio di classe: chi potrebbe tornare a diventare di nicchia, chi potrebbe essere un possibile medio e chi potrebbe essere un possibile mainstream. Si contano i vicini di ogni nodo per classe e, per ciascuno:
+
+\begin{itemize}
+\item diventa possibile mainstream se è emergente o medio e ha almeno due vicini mainstream.
+\item diventa possibile medio se è mainstream/emergente e ha almeno due vicini emergenti/mainstream.
+\item può tornare emergente se è mainstream/medio e ha almeno tre vicini emergenti.
+\end{itemize}
+
+Svolti i calcoli opportuni, prendendo il primo {\itshape subgraph} si ottiene qualcosa del tipo
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../open_problem/plots/3_3/subClSubgr_1.png}
+\caption{Subgraph 1 con classificazione intermedia}
+\label{fig:subClSubgr_1}
+\end{figure}
 
 \subsection{Previsione del trend}
 
