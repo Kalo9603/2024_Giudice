@@ -3,6 +3,7 @@
 \documentclass[sigchi]{acmart}
 \usepackage{array}
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{multirow}
 
 %
@@ -511,7 +512,26 @@ Al contrario, un artista è in {\bfseries trend negativo} se:
 \label{fig:clTrendDist}
 \end{figure}
 
-\noindent Dall'analisi della distribuzione degli artisti per classe e trend emergono alcune dinamiche interessanti. Gli artisti \textit{medi} sono più dinamici, con una significativa presenza sia di casi in crescita sia in calo, il che fa intendere che, data la posizione "centrale" della gerarchia, si tratta di un comportamento plausibile. Gli \textit{emergenti}, invece, sono per la maggiore stabili, ma una parte mostra segnali di crescita, indicando possibilità di affermazione futura. Infine, tra i \textit{mainstream}, oltre alla stabilità, si osserva una quota rilevante di artisti in calo, suggerendo che mantenere una posizione di vertice può risultare complesso. Le classi intermedie, infine, si mantengono invece stabili, come da definizione. \\ \\ Complessivamente i medi si confermano i più esposti a cambiamenti, mentre le altre categorie mostrano maggiore inerzia.
+\noindent Dall'analisi della distribuzione degli artisti per classe e trend emergono alcune dinamiche interessanti. Gli artisti \textit{medi} sono più dinamici, con una significativa presenza sia di casi in crescita sia in calo, il che fa intendere che, data la posizione "centrale" della gerarchia, si tratta di un comportamento plausibile. Gli \textit{emergenti}, invece, sono per la maggiore stabili, ma una parte mostra segnali di crescita, indicando possibilità di affermazione futura. Infine, tra i \textit{mainstream}, oltre alla stabilità, si osserva una quota rilevante di artisti in calo, suggerendo che mantenere una posizione di vertice può risultare complesso. Le classi intermedie, infine, si mantengono invece stabili, come da definizione. \\ \\ Complessivamente i medi si confermano i più esposti a cambiamenti, mentre le altre categorie mostrano maggiore inerzia. \\ \\ Per concludere si sono ricavati artisti emergenti possono fare un glow up (ovvero quelli promettenti), mostrando le community in cui sono presenti e, al contrario, i mainstream che possono invece perdere popolarità. \\ \\ Sono stati selezionati, infine, alcuni artisti emergenti con potenziale crescita e artisti mainstream in calo, sulla base dei loro indici strutturali e di popolarità. Per ciascun artista è stata individuata la community di appartenenza e rappresentata graficamente la rete locale, con l'obiettivo di analizzare come la posizione nella rete possa favorire un cambiamento di trend. Come esempio sono stati analizzati gli Snap! come possibile {\itshape glow up} e Shakira come possibile {\itshape glow down}:
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../open_problem/plots/3_4/comm4827_sRatio.png}
+  \caption{Community degli Snap! - Crescente}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{../open_problem/plots/3_4/comm182_sRatio.png}
+  \caption{Community di Shakira - In calo}
+\end{subfigure}
+
+\caption{Esempi di community di artisti con trend positivo/negativo}
+\label{fig:trendComm}
+\end{figure}
 
 
 \section{Discussion}
