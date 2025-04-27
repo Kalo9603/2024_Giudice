@@ -99,6 +99,7 @@ In particolare, i coefficienti di correlazione citati sono calcolati come segue.
 
 \begin{table}[H]
 \centering
+\small
 \begin{tabular}{|c|>{\centering\arraybackslash}p{4cm}|}
 \hline
 \textbf{Indice} & \textbf{Formula} \\
@@ -148,6 +149,7 @@ Si esamina qui di seguito il grafo ottenuto dalla fase di Data Collection. \\ \\
 
 \begin{table}[H]
 \centering
+\small
 \begin{tabular}{|c|>{\raggedright\arraybackslash}p{4cm}|}
 \hline
 \textbf{Artisti totali} &
@@ -350,6 +352,7 @@ L'indagine comincia con il calcolo della {\itshape popolarità} di un artista. C
 
 \begin{table}[H]
 \centering
+\small
 \begin{tabular}{|c|>{\centering\arraybackslash}p{4cm}|}
 \hline
 \textbf{Indice} & \textbf{Formula} \\
@@ -438,7 +441,7 @@ Stabilite le classi degli artisti, è utile in questa fase individuare quali son
 \item può tornare emergente se è mainstream/medio e ha almeno tre vicini emergenti.
 \end{itemize}
 
-Svolti i calcoli opportuni, prendendo il primo {\itshape subgraph} si ottiene qualcosa del tipo
+Svolti i calcoli opportuni, prendendo il primo {\itshape subgraph} si ottiene qualcosa del tipo:
 
 \begin{figure}[H]
 \centering
@@ -450,9 +453,69 @@ Svolti i calcoli opportuni, prendendo il primo {\itshape subgraph} si ottiene qu
 
 \subsection{Previsione del trend}
 
+Definite le classi principali degli artisti ({\itshape mainstream}, {\itshape medio} ed {\itshape emergente}) e quelle intermedie ({\itshape possibile mainstream}, {\itshape possibile medio}, {\itshape ritorno emergente}) si prova a prevedere il {\itshape trend}, ovvero se c'è una possibilità di crescita, di calo o se la popolarità di quell'artista resti stabile. Per far ciò sono stati adoperati dei coefficienti di correlazione per ciascun artista:
+
+\begin{itemize}
+\item la {\itshape Degree Centrality}, poiché se un artista ha un grado alto ha più possibilità di farsi conoscere e quindi ottenere maggiore popolarità;
+\item il coefficiente di {\itshape clustering}, perché può considerarsi stabile e quindi più "protetto" da altri colleghi con popolarità maggiore;
+\item la {\itshape Betweenness Centrality}, in quanto ha la possibilità di diventare un {\itshape trend setter} o, se già conosciuto, consolidare maggiormente la sua popolarità;
+\item il {\itshape PageRank}, perché misura l'importanza dell'artista in base non solo al numero di collegamenti, ma anche all'importanza di chi lo collega, quindi può misurare un potenziale {\itshape glow-up}.
+\end{itemize}
+
+I coefficienti di correlazione ricavati dai calcoli sono dunque i seguenti:
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{l r}
+\hline
+\textbf{Degree} & 0.002 \\
+\textbf{Clustering} & -0.038 \\
+\textbf{Betweenness} & 0.010 \\
+\textbf{PageRank} & 0.043 \\
+\textbf{Sample medio} & 0.005 \\
+\textbf{Jaccard medio} & -0.012 \\
+\hline
+\end{tabular}
+\caption{Coefficiente di correlazione tra metriche strutturali e Z-Index della popolarità}
+\label{tab:corrMetrics}
+\end{table}
+
+A questi parametri si aggiungono anche il Sample e lo Jaccard Ratio medi, cioè rispettivamente quanto un artista è simile mediamente ai suoi collegamenti e quanto il set di artisti simili è sovrapposto. \\ \\ Per ogni artista viene quindi creato un vettore con tali parametri, dunque si dà vita a una {\bfseries matrice di correlazione} tra questi e lo Z-Index. I criteri, dunque, per distinguere un trend di crescita da uno in calo si possono riassumere in questo modo.
+Si considera un artista in {\bfseries trend positivo} se:
+
+\begin{itemize}
+	\item è {\itshape emergente} o {\itshape medio} e:
+	\begin{itemize}
+		\item il PageRank è superiore al $70^\circ$ percentile;
+		\item il Sample Ratio medio è superiore a $85$ e lo Jaccard medio a $75$;
+	\end{itemize}
+	\item la Betweenness è superiore al $75^\circ$ percentile se di rango medio.
+\end{itemize}
+Al contrario, un artista è in {\bfseries trend negativo} se:
+
+\begin{itemize}
+\item è {\itshape emergente} o {\itshape medio};
+\item il PageRank è superiore al $70^\circ$ percentile
+\item il Sample Ratio medio è superiore a $85$ e lo Jaccard medio a $75$;
+\item la Betweenness è superiore al $75^\circ$ percentile se di rango medio.
+\end{itemize}
+
+\noindent Dunque è stata creata una {\itshape heat map} con gli artisti, di ciascuna classe, che possono avere un trend positivo o negativo, o che rimane stabile:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45
+\textwidth]{../open_problem/plots/3_4/clTrendDist.png}
+\caption{Distribuzione artisti per classe e trend}
+\label{fig:clTrendDist}
+\end{figure}
+
+\noindent Dall'analisi della distribuzione degli artisti per classe e trend emergono alcune dinamiche interessanti. Gli artisti \textit{medi} sono più dinamici, con una significativa presenza sia di casi in crescita sia in calo, il che fa intendere che, data la posizione "centrale" della gerarchia, si tratta di un comportamento plausibile. Gli \textit{emergenti}, invece, sono per la maggiore stabili, ma una parte mostra segnali di crescita, indicando possibilità di affermazione futura. Infine, tra i \textit{mainstream}, oltre alla stabilità, si osserva una quota rilevante di artisti in calo, suggerendo che mantenere una posizione di vertice può risultare complesso. Le classi intermedie, infine, si mantengono invece stabili, come da definizione. \\ \\ Complessivamente i medi si confermano i più esposti a cambiamenti, mentre le altre categorie mostrano maggiore inerzia.
+
 
 \section{Discussion}
-
+Il progetto ha mostrato come l'analisi delle relazioni di similarità tra artisti musicali possa offrire spunti interessanti per comprendere le dinamiche di crescita o declino nella popolarità. Attraverso metriche strutturali e coefficienti di similarità, è stato possibile individuare tendenze e potenziali cambi di status tra artisti emergenti, medi e mainstream. \\ \\ L'integrazione di dati strutturali e di popolarità ha permesso non solo di descrivere la rete, ma anche di fornire modelli predittivi semplici e interpretabili. Sebbene i risultati siano incoraggianti, ulteriori sviluppi potrebbero prevedere l'integrazione di dati temporali o l'uso di modelli predittivi più complessi per affinare l'analisi.
 
 % The next two lines define the bibliography style to be used, and the bibliography file.
 \bibliographystyle{ACM-Reference-Format}
