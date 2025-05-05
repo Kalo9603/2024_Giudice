@@ -14,7 +14,7 @@ class Couple:
                                 {"ID": "SMALLINT NOT NULL",
                                 "Similars": "TEXT NOT NULL"
                                 }, primaryKeys=["ID"])
-    
+
     def __init__(self, ls: Artists, artist1: str, artist2: str, sRatio: float = None, jRatio: float = None):
 
         self.api = Connection().connect()

@@ -74,7 +74,7 @@ Nell'epoca dell'affermazione dell'industria musicale digitale, piattaforme come 
 \item Il {\itshape Sample Ratio}, ovvero l’intensità del legame tra due artisti in base ai simili condivisi.
 \item Lo {\itshape Jaccard Ratio}, ovvero l’affinità relativa all’insieme totale di simili.
 \end{itemize}
-Matematicamente, è molto più probabile che lo {\itshape Jaccard} sia inferiore del rispettivo {\itshape Sample}, poiché il denominatore del primo è sempre maggiore del secondo (a meno che tali denominatori non coincidono). \\ \\ In parallelo si è stimata la {\bfseries popolarità} degli artisti presenti nel dataset: per far ciò ci si è basati sullo {\bfseries Z-Index}, che mette in relazione il numero di ascoltatori e quello di ascolti. Ciò ha permesso di classificare gli artisti in tre classi: {\bfseries \itshape mainstream}, {\bfseries \itshape medio} ed {\bfseries \itshape emergente}; a questi ne sono stati affiancati altri tre: {\bfseries \itshape possibile mainstream}, {\bfseries \itshape possibile medio} e {\bfseries \itshape ritorno emergente} in base al trend di (de)crescita calcolato. \\ \\ L'obiettivo principale della seconda parte progetto è quello di identificare le caratteristiche strutturali degli artisti mainstream e di quelli emergenti ed, eventualmente, di prevedere un cambio di status in base a determinate metriche.
+Matematicamente, è molto più probabile che lo {\itshape Jaccard} sia inferiore del rispettivo {\itshape Sample}, poiché il denominatore del primo è sempre maggiore del secondo (a meno che tali denominatori non coincidono). \\ \\ In parallelo si è stimata la {\bfseries popolarità} degli artisti presenti nel dataset: per far ciò ci si è basati sullo {\bfseries Z-Index}, che mette in relazione il numero di ascoltatori e quello di ascolti. Ciò ha permesso di classificare gli artisti in tre classi: {\bfseries \itshape mainstream}, {\bfseries \itshape medio} ed {\bfseries \itshape emergente}; a questi ne sono stati affiancati altri tre: {\bfseries \itshape possibile mainstream}, {\bfseries \itshape possibile medio} e {\bfseries \itshape ritorno emergente} in base al trend di (de)crescita calcolato. \\ \\ L'obiettivo principale della seconda parte del progetto è quello di identificare le caratteristiche strutturali degli artisti mainstream e di quelli emergenti ed, eventualmente, di prevedere un cambio di status in base a determinate metriche.
 
 
 \section{Data Collection}
@@ -133,7 +133,7 @@ $Z_i = \frac{pop_{\log,i} - \mu}{\sigma}$ \\
 
 \subsection{Dati selezionati}
 
-Al fine di avere un dataset iniziale di artisti si è pensato, partendo da quattro artisti provenienti da quattro generi musicali diversi (\href{https://www.last.fm/music/Annalisa}{Annalisa} per il pop italiano; \href{https://www.last.fm/music/Giorgio+Vanni}{Giorgio Vanni} per le sigle, \href{https://www.last.fm/music/Katy+Perry}{Katy Perry} per la quota internazionale e \href{https://www.last.fm/music/Ado}{Ado} per il mercato giapponese). \\ \\ Quindi, partendo da essi, viene creata la lista di artisti simili a cominciare da quello in input: se non è presente, l'artista trovato viene aggiunta in lista. La medesima operazione viene svolta, alla prima iterazione, sui primi quattro artisti; poi, dalla seconda, si considerano anche tutti quelli aggiunti in coda. In questo modo è stato ottenuto un dataset di 28\,870 artisti. Relativamente all'ordine di inserimento nel dataset, a ciascun artista è stato assegnato un ID autoincrementale. \\ \\ Al termine si è passati, basandosi sull'elenco degli artisti, alla generazione del dataset dei {\itshape links} del grafo. Per far ciò per ciascun artista della lista, sfruttando le proprietà di un grafo non orientato:
+Al fine di avere un dataset iniziale di artisti si è pensato, partendo da quattro artisti provenienti da quattro generi musicali diversi (\href{https://www.last.fm/music/Annalisa}{Annalisa} per il pop italiano; \href{https://www.last.fm/music/Giorgio+Vanni}{Giorgio Vanni} per le sigle, \href{https://www.last.fm/music/Katy+Perry}{Katy Perry} per la quota internazionale e \href{https://www.last.fm/music/Ado}{Ado} per il mercato giapponese). \\ \\ Quindi, partendo da essi, viene creata la lista di artisti simili a cominciare da quelli di partenza: se non è presente, l'artista trovato viene aggiunto in lista. La medesima operazione viene svolta, alla prima iterazione, sui primi quattro artisti; poi, dalla seconda, si considerano anche tutti quelli aggiunti in coda. In questo modo è stato ottenuto un dataset di 28\,870 artisti. Relativamente all'ordine di inserimento nel dataset, a ciascun artista è stato assegnato un ID autoincrementale. \\ \\ Al termine si è passati, basandosi sull'elenco degli artisti, alla generazione del dataset dei {\itshape links} del grafo. Per far ciò per ciascun artista della lista, sfruttando le proprietà di un grafo non orientato:
 
 \begin{itemize}
 \item Si considera l'artista con ID immediatamente successivo;
@@ -197,7 +197,7 @@ Nota che l'errore tra i due metodi è dell'ordine di $ 10^{-4} $. Dal grafico si
 \label{fig:plotDist}
 \end{figure}
 
-\noindent Dato che si tratta di un grafo pesato su due livelli, è interessante mostrare come si comportano i rispettivi pesi con i medesimi grafici. Per cui si illustrano i medesimi grafici ma pesati: qui è evidente come lo Jaccard Ratio risulta più traslato indietro rispetto al Sample corrispondente. dal grafico corrispondente CDF e CCDF si nota come il range dei gradi pesati Jaccard sia molto più variabile rispetto al Sample. Risulta altresì interessante la continua sovrapposizione di entrambi i gradi nel modello CCDF:
+\noindent Dato che si tratta di un grafo pesato su due livelli, è interessante mostrare come si comportano i rispettivi pesi. Per cui si illustrano i medesimi grafici ma pesati: qui è evidente come lo Jaccard Ratio risulta più traslato indietro rispetto al Sample corrispondente. dai grafici CDF e CCDF si nota come il range dei gradi pesati Jaccard sia molto più variabile rispetto al Sample. Risulta altresì interessante la continua sovrapposizione di entrambi i gradi nel modello CCDF:
 
 \begin{figure}[H]
 \centering
@@ -270,7 +270,7 @@ Regime & \multicolumn{2}{|c|}{{\itshape Connected}} & {\itshape Supercritical} \
 \label{fig:grComparison}
 \end{figure}
 
-\noindent Si può constatare che il grafo, per quanto possa somigliare a un grafo BA, non si può prendere perfettamente a modello, complici il numero di archi e la densità nettamente minori del BA rispetto all'originale. Invece a occhio, se si sovrapponesse la medesima distribuzione pesata, si può notare che essa risulti molto più simile al BA rispetto al corrispettivo {\itshape inweighted}. Invece l'ER, sebbene alcuni valori di riferimento sono abbastanza vicini, non si avvicina minimamente alla distribuzione in analisi.
+\noindent Si può constatare che il grafo, per quanto possa somigliare a un grafo BA, non si può prendere perfettamente a modello, complici il numero di archi e la densità nettamente minori del BA rispetto all'originale. Invece a occhio, se si sovrapponesse la medesima distribuzione pesata, si può notare che essa risulti molto più simile al BA rispetto al corrispettivo {\itshape unweighted}. Invece l'ER, sebbene alcuni valori di riferimento sono abbastanza vicini, non si approssima minimamente alla distribuzione in analisi.
 
 \subsection{Distribuzione dei Ratio}
 
@@ -323,7 +323,7 @@ Il clustering medio è di $0.51646$. In media, quindi, più vi sono poco più de
 
 \subsection{Centralities}
 
-Sono state esaminate sia la {\itshape Closeness} che la {\itshape Betweenness} Centrality. Su questi parametri salta nell'occhio che i valori massimi sono entrambi molto bassi, il che suggerisce una certa lontananza (in termini di Closeness) o di dominanza (per la Betweenness). Queste sono conseguenze nell'aver stabilito una soglia minima di Ratio relativamente centrale: infatti, la probabilità che due artisti siano legati da un ratio basso è ben maggiore. \\ \\ I valori massimi di {\bfseries Closeness} Centrality oscillano tra $1.347 \times 10^{-2}$ e $1.429 \times 10^{-2}$: ciò suggerisce che, sebbene la soglia è relativamente bassa risulta coerente in quanto la rete è poco densa. La top $20$ degli artisti per Closeness è dominata da artisti provenienti dal mondo country e country pop; inoltre può anche suggerire che all'interno del dataset gli artisti country sono collegati in maniera migliore rispetto agli altri generi musicali. Si mostra un grafico che mostra i $20$ artisti con maggiore Closeness:
+Sono state esaminate sia la {\itshape Closeness} che la {\itshape Betweenness} Centrality. Su questi parametri salta all'occhio che i valori massimi sono entrambi molto bassi, il che suggerisce una certa lontananza (in termini di Closeness) o di dominanza (per la Betweenness). Queste sono conseguenze nell'aver stabilito una soglia minima di Ratio relativamente centrale: infatti, la probabilità che due artisti siano legati da un ratio basso è ben maggiore. \\ \\ I valori massimi di {\bfseries Closeness} Centrality oscillano tra $1.347 \times 10^{-2}$ e $1.429 \times 10^{-2}$: ciò suggerisce che, sebbene la soglia è relativamente bassa risulta coerente in quanto la rete è poco densa. La top $20$ degli artisti per Closeness è dominata da artisti provenienti dal mondo country e country pop; inoltre può anche suggerire che all'interno del dataset gli artisti country sono collegati in maniera migliore rispetto agli altri generi musicali. Si mostra un grafico che mostra i $20$ artisti con maggiore Closeness:
 
 \begin{figure}[H]
 \centering
@@ -381,14 +381,13 @@ $Z_i = \frac{pop_{\log,i} - \mu}{\sigma}$ \\
 
 \subsection{Definizione delle classi}
 
-Per poter definire se un artista è emergente, mainstream o nella via di mezzo, sono stati adottati i quantili. Se un artista ha uno Z-Index:
+Per poter definire se un artista è emergente, mainstream o sulla via di mezzo, sono stati adottati i quantili. Se un artista ha uno Z-Index:
 
 \begin{itemize}
 \item minore o uguale al $15^\circ$ percentile, allora è considerato {\itshape emergente};
 \item maggiore o uguale all\textquotesingle$85^\circ$ percentile, allora è considerato {\itshape mainstream};
 \item in tutti gli altri casi è {\itshape medio}.
 \end{itemize}
-
 Il seguente grafico mostra la dsitribuzione dello Z-Index con evidenziati i quantili di riferimento:
 
 \begin{figure}[H]
@@ -409,7 +408,7 @@ Il seguente grafico mostra la dsitribuzione dello Z-Index con evidenziati i quan
 \label{fig:clConnection}
 \end{figure}
 
-\noindent Un dato interessante che salta all'occhio è che gli archi tra artisti mainstream ed emergenti è decisamente più basso tra gli altri ($330+81=411$ su 98\,890, solo lo $0.41\%$ del totale). Per cui è molto meno probabile che un emergente possa saltare direttamente al mainstream; dunque l'artista in questione dovrà necessariamente passare dalla classe intermedia. \\ \\ Andando più nel dettaglio si è creato un {\itshape box plot} che mostra come sono distribuiti i Ratio in base alle classi sopra:
+\noindent Un dato interessante che salta all'occhio è che gli archi tra artisti mainstream ed emergenti è decisamente più basso degli altri ($330+81=411$ su 98\,890, solo lo $0.41\%$ del totale). Per cui è molto meno probabile che un emergente possa saltare direttamente al mainstream; dunque l'artista in questione dovrà necessariamente passare dalla classe intermedia. \\ \\ Andando più nel dettaglio si è creato un {\itshape box plot} che mostra come sono distribuiti i Ratio in base alle classi sopra:
 
 \begin{figure}[H]
 \centering
@@ -433,7 +432,7 @@ Il seguente grafico mostra la dsitribuzione dello Z-Index con evidenziati i quan
 
 \subsection{Calcolo delle classi intermedie}
 
-Stabilite le classi degli artisti, è utile in questa fase individuare quali sono gli artisti che possono tendere a un aumento o a un calo di popolarità. Per far ciò sono state analizzate le community, ricercate attraverso l'algoritmo di Louvain, in cui è presente ciascun artista. In primo luogo per ciascuna community sono stati calcolati lo Z-Index, il Sample e lo Jaccard medi. Lo studio delle community è utile per identificare il contesto e trovare cluster potenzialmente interessanti e non per cambiare direttamente la classe di un artista; la community da sola non è una buona predittrice della struttura interna o della popolarità..
+Stabilite le classi degli artisti, è utile in questa fase individuare quali sono gli artisti che possono tendere a un aumento o a un calo di popolarità. Per far ciò sono state analizzate le community, ricercate attraverso l'algoritmo di Louvain, in cui è presente ciascun artista. In primo luogo per ciascuna community sono stati calcolati lo Z-Index, il Sample e lo Jaccard medi. Lo studio delle community è utile per identificare il contesto e trovare cluster potenzialmente interessanti e non per cambiare direttamente la classe di un artista; la community da sola non è una buona predittrice della struttura interna o della popolarità.
  \\ \\ Quindi si definiscono altre tre classi per identificare i nodi che possono tendere ad un cambio di classe: chi potrebbe tornare a diventare di nicchia, chi potrebbe essere un possibile medio e chi potrebbe essere un possibile mainstream. Si contano i vicini di ogni nodo per classe e, per ciascuno:
 
 \begin{itemize}
@@ -441,7 +440,6 @@ Stabilite le classi degli artisti, è utile in questa fase individuare quali son
 \item diventa possibile medio se è mainstream/emergente e ha almeno due vicini emergenti/mainstream.
 \item può tornare emergente se è mainstream/medio e ha almeno tre vicini emergenti.
 \end{itemize}
-
 Svolti i calcoli opportuni, prendendo il primo {\itshape subgraph} si ottiene qualcosa del tipo:
 
 \begin{figure}[H]
@@ -481,7 +479,6 @@ I coefficienti di correlazione ricavati dai calcoli sono dunque i seguenti:
 \caption{Coefficiente di correlazione tra metriche strutturali e Z-Index della popolarità}
 \label{tab:corrMetrics}
 \end{table}
-
 A questi parametri si aggiungono anche il Sample e lo Jaccard Ratio medi, cioè rispettivamente quanto un artista è simile mediamente ai suoi collegamenti e quanto il set di artisti simili è sovrapposto. \\ \\ Per ogni artista viene quindi creato un vettore con tali parametri, dunque si dà vita a una {\bfseries matrice di correlazione} tra questi e lo Z-Index. I criteri, dunque, per distinguere un trend di crescita da uno in calo si possono riassumere in questo modo.
 Si considera un artista in {\bfseries trend positivo} se:
 
